@@ -1,4 +1,9 @@
-# Examining Statistical Inference
+---
+title: "Examining Statistical Inference"
+output: 
+    html_document:
+        keep_md: true
+---
 
 *Synopsis:* This report examines principles of statistical inference by investigating simulated random samples from a population.  It was conducted as part of a class assessment for the Johns Hopkins University's ["Statistical Inference"](https://www.coursera.org/course/statinference) offered through Coursera.
 
@@ -9,8 +14,7 @@ To investigate:
 
 1. We simulate 1000 samples of size 40 from an exponential distribution.  Here, the exponential distribution acts as our population and is parameterized by a rate (lambda) of 0.2.  
 
-
-```r
+```{r}
 nosim <- 1000
 lambda <- 0.2
 expectedValue <- 1/lambda
@@ -23,12 +27,12 @@ for (i in 1:1000){
         temp <- (mean(aSample))
         SampleMeans <- c(SampleMeans, temp)
 }
+
 ```
 
 2. Next, we compare the empirical and theoretical means of a single sample of 40 exponentials with those of the means of 1000 samples of 40 exponentials.
 
-
-```r
+```{r}
 #Show where the distribution is centered at and compare it to the theoretical center of the distribution.
 
 oneSample <- rexp(40,lambda)
@@ -56,8 +60,6 @@ legend(6.1,300,
        cex=.8)
 ```
 
-![](./StatInferencePart01_files/figure-html/unnamed-chunk-2-1.png) 
-
 3. From the above plot, we see that while the mean of any one sample can differ from the theoretical (population) mean, the sample means of large numbers of samples are centered on the theoretical mean.  Therefore, we can say that a *sample mean* **approximates** a *population mean*.
 
 ##II: Sample Means Variance Decreases With Sample Size
@@ -67,8 +69,7 @@ To investigate:
 
 1. We simulate 1000 samples of sizes 10, 20, 30... through 160 and take the mean of each.
 
-
-```r
+```{r cache=TRUE}
 SampleMeans2 <-numeric()
 
 for (n in seq(from=10,to=160,by=10)){
@@ -84,8 +85,7 @@ MatrixMeans <- matrix(SampleMeans2, nrow=1000,ncol=16)
 
 2. Next, we take the empirical variance of each of 16 different distributions of sample means and plot it.  This shows that the variance of sample means decreases as the size of the sample increases.
 
-
-```r
+```{r}
 #Show how variable it is and compare it to the theoretical variance of the distribution.
 variances <- apply(MatrixMeans,2,var)
 par(mfrow=c(1,1),oma=c(1,1,1,1), xpd=FALSE)
@@ -97,18 +97,10 @@ plot(variances,type="l", col="blue",lwd=2,
 axis(1, at=1:16,labels=seq(10,160,by=10))
 ```
 
-![](./StatInferencePart01_files/figure-html/unnamed-chunk-4-1.png) 
-
 3. Finally, we compare the variance of our sample means of 1000 samples of 40 exponentials to its theoretical variance, verifying that they are close.
 
-
-```r
+```{r}
 data.frame(Empirical=var(SampleMeans),Theoretical=((1/lambda)^2/40))
-```
-
-```
-##   Empirical Theoretical
-## 1 0.6535336       0.625
 ```
 
 ##III: Sample Means Distribution is Approximately Normal
@@ -118,8 +110,7 @@ To investigate:
 
 1. First, we examine the theoretical distribution of our "population," which, as noted before, follows an exponential distribution.
 
-
-```r
+```{r}
 library(ggplot2)
 dat0 <- data.frame(
     x = rexp(5000,lambda))
@@ -131,12 +122,9 @@ a <- a +
 print(a)
 ```
 
-![](./StatInferencePart01_files/figure-html/unnamed-chunk-6-1.png) 
-
 2. Next, we compare the distribution of 1000 sample means of increasing size from this exponentially distributed "population."
 
-
-```r
+```{r}
 #Show that the distribution is approximately normal.
 nosim <- 1000
 cfunc <- function(x, n) sqrt(n) * (mean(x) - expectedValue) / standardDev #zero the mean and scale
@@ -153,7 +141,5 @@ g + facet_grid(. ~ size) +
     labs(title="Sample Means Density Approximates Normal as N Increases")+
     theme_bw()
 ```
-
-![](./StatInferencePart01_files/figure-html/unnamed-chunk-7-1.png) 
 
 3. From the above plot, we see that the distribution of sample means begins to approximate a normal distribution as the size of the sample increases. 
