@@ -56,7 +56,7 @@ legend(6.1,300,
        cex=.8)
 ```
 
-![](./StatInferencePart01_files/figure-html/unnamed-chunk-2-1.png) 
+<img src="./StatInferencePart01_files/figure-html/unnamed-chunk-2-1.png" title="" alt="" width="500px" />
 
 3. From the above plot, we see that while the mean of any one sample can differ from the theoretical (population) mean, the sample means of large numbers of samples are centered on the theoretical mean.  Therefore, we can say that a *sample mean* **approximates** a *population mean*.
 
@@ -97,7 +97,7 @@ plot(variances,type="l", col="blue",lwd=2,
 axis(1, at=1:16,labels=seq(10,160,by=10))
 ```
 
-![](./StatInferencePart01_files/figure-html/unnamed-chunk-4-1.png) 
+<img src="./StatInferencePart01_files/figure-html/unnamed-chunk-4-1.png" title="" alt="" width="500px" />
 
 3. Finally, we compare the variance of our sample means of 1000 samples of 40 exponentials to its theoretical variance, verifying that they are close.
 
@@ -108,7 +108,7 @@ data.frame(Empirical=var(SampleMeans),Theoretical=((1/lambda)^2/40))
 
 ```
 ##   Empirical Theoretical
-## 1 0.6535336       0.625
+## 1 0.6294034       0.625
 ```
 
 ##III: Sample Means Distribution is Approximately Normal
@@ -131,7 +131,7 @@ a <- a +
 print(a)
 ```
 
-![](./StatInferencePart01_files/figure-html/unnamed-chunk-6-1.png) 
+<img src="./StatInferencePart01_files/figure-html/unnamed-chunk-6-1.png" title="" alt="" width="500px" />
 
 2. Next, we compare the distribution of 1000 sample means of increasing size from this exponentially distributed "population."
 
@@ -154,6 +154,6 @@ g + facet_grid(. ~ size) +
     theme_bw()
 ```
 
-![](./StatInferencePart01_files/figure-html/unnamed-chunk-7-1.png) 
+<img src="./StatInferencePart01_files/figure-html/unnamed-chunk-7-1.png" title="" alt="" width="500px" />
 
 3. From the above plot, we see that the distribution of sample means begins to approximate a normal distribution as the size of the sample increases. 

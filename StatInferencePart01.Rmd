@@ -15,6 +15,7 @@ To investigate:
 1. We simulate 1000 samples of size 40 from an exponential distribution.  Here, the exponential distribution acts as our population and is parameterized by a rate (lambda) of 0.2.  
 
 ```{r}
+
 nosim <- 1000
 lambda <- 0.2
 expectedValue <- 1/lambda
@@ -32,7 +33,7 @@ for (i in 1:1000){
 
 2. Next, we compare the empirical and theoretical means of a single sample of 40 exponentials with those of the means of 1000 samples of 40 exponentials.
 
-```{r}
+```{r out.width = '500px', dpi=300}
 #Show where the distribution is centered at and compare it to the theoretical center of the distribution.
 
 oneSample <- rexp(40,lambda)
@@ -85,7 +86,7 @@ MatrixMeans <- matrix(SampleMeans2, nrow=1000,ncol=16)
 
 2. Next, we take the empirical variance of each of 16 different distributions of sample means and plot it.  This shows that the variance of sample means decreases as the size of the sample increases.
 
-```{r}
+```{r out.width = '500px', dpi=300}
 #Show how variable it is and compare it to the theoretical variance of the distribution.
 variances <- apply(MatrixMeans,2,var)
 par(mfrow=c(1,1),oma=c(1,1,1,1), xpd=FALSE)
@@ -110,7 +111,7 @@ To investigate:
 
 1. First, we examine the theoretical distribution of our "population," which, as noted before, follows an exponential distribution.
 
-```{r}
+```{r out.width = '500px', dpi=300}
 library(ggplot2)
 dat0 <- data.frame(
     x = rexp(5000,lambda))
@@ -124,7 +125,7 @@ print(a)
 
 2. Next, we compare the distribution of 1000 sample means of increasing size from this exponentially distributed "population."
 
-```{r}
+```{r out.width = '500px', dpi=300}
 #Show that the distribution is approximately normal.
 nosim <- 1000
 cfunc <- function(x, n) sqrt(n) * (mean(x) - expectedValue) / standardDev #zero the mean and scale
